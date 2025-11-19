@@ -1,51 +1,73 @@
-import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
     darkMode: ["class"],
     content: [
         "./pages/**/*.{ts,tsx}",
         "./components/**/*.{ts,tsx}",
         "./app/**/*.{ts,tsx}",
-        "./src/**/*.{ts,tsx}"
+        "./src/**/*.{ts,tsx}",
     ],
     theme: {
-        container: { center: true, padding: "1rem", screens: { lg: "1120px" } },
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        },
         extend: {
             colors: {
-                background: "#06080f",
-                foreground: "#e6f1ff",
-                muted: "#101624",
-                card: "#0b1020",
-                accent: "#8ab4ff"
+                // This maps the CSS variables from globals.css to Tailwind classes
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
+            },
+            borderRadius: {
+                lg: "0.5rem",
+                md: "calc(0.5rem - 2px)",
+                sm: "calc(0.5rem - 4px)",
             },
             fontFamily: {
-                sans: ["Outfit", ...fontFamily.sans],
-                mono: ["IBM Plex Mono", ...fontFamily.mono]
-            },
-            boxShadow: {
-                soft: "0 10px 40px rgba(0,0,0,.45)",
-                glow: "0 0 120px 40px rgba(138,180,255,.08)"
+                sans: ["var(--font-outfit)", ...fontFamily.sans],
+                mono: ["var(--font-plex)", ...fontFamily.mono],
             },
             animation: {
-                "flow-a": "flow 28s ease-in-out infinite",
-                "flow-b": "flow 36s ease-in-out infinite reverse",
-                float: "float 8s ease-in-out infinite"
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
             },
-            keyframes: {
-                flow: {
-                    "0%": { transform: "translate3d(-10%, -10%, 0) scale(1)" },
-                    "50%": { transform: "translate3d(10%, 10%, 0) scale(1.15)" },
-                    "100%": { transform: "translate3d(-10%, -10%, 0) scale(1)" }
-                },
-                float: {
-                    "0%": { transform: "translateY(0)" },
-                    "50%": { transform: "translateY(-6px)" },
-                    "100%": { transform: "translateY(0)" }
-                }
-            }
-        }
+        },
     },
-    plugins: []
-} satisfies Config;
+    plugins: [],
+};
